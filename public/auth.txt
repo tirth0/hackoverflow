@@ -1,0 +1,2 @@
+clientID = 133149144745-i8tjhalcahchllu9oto72oet4631tpas.apps.googleusercontent.com
+clientSecret = V8ldaOwoVc6_PJ9iJUAYQbns

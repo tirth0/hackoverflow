@@ -2,9 +2,25 @@ import React from 'react';
 import {Button} from '@material-ui/core';
 import classes from './Login.module.css';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import GitHubIcon from '@material-ui/icons/Facebook';
-import TwitterIcon from '@material-ui/icons/Facebook';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import TwitterIcon from '@material-ui/icons/Twitter';
 import GTranslateIcon from '@material-ui/icons/GTranslate';
+import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { green, blue } from '@material-ui/core/colors';
+
+
+const LoginButton = withStyles((theme) => ({
+    root: {
+      color: theme.palette.getContrastText(blue[500]),
+      width : '15rem',
+      margin : '1rem',
+      textDecoration : 'none',
+      backgroundColor: blue[500],
+      '&:hover': {
+        backgroundColor: blue[700],
+      },
+    },
+  }))(Button);
 
 const Icon = ({provider}) =>{
     let IconComponent;
@@ -24,18 +40,19 @@ const Icon = ({provider}) =>{
 
 const SocialLink = ({provider}) => {
     return(
-    <a href={`http://localhost:1337/connect/${provider}`} className="link">
-      <Button type="button" social={provider}>
+    <a href={`http://localhost:1337/connect/${provider}`} className={classes.link}>
+      <LoginButton type="button" social={provider}>
         <Icon provider={provider}/>
+        &nbsp;
         {provider}
-      </Button>
+      </LoginButton>
     </a>);
 }
 
 const AuthBtns = () =>{
     const providers = ['facebook', 'github', 'google', 'twitter'];
     return(
-        <div>
+        <div className={classes.loginContainer}>
        {providers.map(provider => <SocialLink provider={provider} key={provider} />)}
      </div>
     );
