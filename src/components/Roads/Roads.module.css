@@ -1,0 +1,65 @@
+.sideBarContainer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 25vw;
+
+}
+
+.links{
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    justify-content: space-around;
+    height: 20vh;
+    width: 100%;
+    
+}
+
+.links>a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+    width: 100%;
+    height: 30%;
+}
+
+.links>a:hover{
+    background-color: purple;
+}
+
+.profile{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 100%;
+    border: 2px solid black;
+    background-color: white;
+}
+
+
+.sideBar{
+    display: flex;
+    width:  100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background: rgb(126,104,144);
+    background: -moz-radial-gradient(circle, rgba(126,104,144,1) 0%, rgba(95,55,152,1) 45%, rgba(44,28,116,1) 100%);
+    background: -webkit-radial-gradient(circle, rgba(126,104,144,1) 0%, rgba(95,55,152,1) 45%, rgba(44,28,116,1) 100%);
+    background: radial-gradient(circle, rgba(126,104,144,1) 0%, rgba(95,55,152,1) 45%, rgba(44,28,116,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#7e6890",endColorstr="#2c1c74",GradientType=1);
+}
+
+.roadTableContainer{
+    width: 75vw;
+    margin-left: 25vw;
+    padding: 2rem ;
+}
+
+.roadPage{
+    display: flex;
+    width: 100vw;
+}
