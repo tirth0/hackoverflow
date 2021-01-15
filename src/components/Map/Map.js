@@ -78,6 +78,29 @@ const MapWrapper = ()=>{
             <div id="locator" className={`ol-control ol-unselectable ${styles.locate}`}>
                 <button title="Locate me">◎</button>
             </div>
+            <div>
+              <form method="post">
+                <label for='name'><b>Full Name:</b></label>
+                <input type="text" id="name"/>
+                <label for='email'><b>Email:</b></label>
+                <input type="email" id="email"/>
+                <label for="phone no"><b>Phone no:</b></label>
+                <input type="text" id="phone no"/>
+                <label for="address"><b>Address:</b></label>
+                <input type="text" id="adress" placeholder="Street address,P.O.box and Colony name "/>
+                <label for="img"><b>Image(less than 250kb):</b></label>
+                <input type="file" id="img" accept="image/*" />
+                <input type="checkbox" id="manually"/>
+                <label for="manually" class="manual">Select latitude and longitude manually</label>
+                <br/>
+                <label for="lat" class="lat" >latitude: </label>
+                <input type="text" id="lat" />
+                <label for="lon" class="lon">longitude:</label>
+                <input type="text" id="lon" />
+                <input type="submit" class="final"/>
+              </form>
+            </div>
+            
         </div>
     );
 }
