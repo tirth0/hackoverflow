@@ -7,10 +7,14 @@ import TileLayer from 'ol/layer/Tile'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import XYZ from 'ol/source/XYZ'
-import {transform} from 'ol/proj'
+import {transform,fromLonLat} from 'ol/proj'
 import {toStringXY} from 'ol/coordinate';
 import OSM from 'ol/source/OSM';
-
+import Feature from 'ol/Feature';
+import {circular} from 'ol/geom/Polygon';
+import Point from 'ol/geom/Point';
+import Control from 'ol/control/Control';
+import BingMaps from 'ol/source/BingMaps';
 
 const MapWrapper = ()=>{
     const [center,setCenter] = useState([0,0]);
@@ -19,7 +23,11 @@ const MapWrapper = ()=>{
     const olMap = new Map({
         layers: [
             new TileLayer({
-              source: new OSM(),
+              source: new BingMaps({
+                  key : 'AsQblU0RiCtFTCZqCy95v6Ax4YOunThhOO8RIsowcDuVQjBLJqZ37dYAwo4VRe_Z',
+                  imagerySet : 'RoadOnDemand',
+                  maxZoom : 19
+              }),
             }) ],
           target: null,
           view: new View({
@@ -30,10 +38,46 @@ const MapWrapper = ()=>{
 
     useEffect(()=>{
         olMap.setTarget("map");
+        const source = new VectorSource();
+        const layer = new VectorLayer({
+                source: source
+        });
+        olMap.addLayer(layer);
+        navigator.geolocation.watchPosition(function(pos) {
+            const coords = [pos.coords.longitude, pos.coords.latitude];
+            const accuracy = circular(coords, pos.coords.accuracy);
+            source.clear(true);
+            source.addFeatures([
+              new Feature(accuracy.transform('EPSG:4326', olMap.getView().getProjection())),
+              new Feature(new Point(fromLonLat(coords)))
+            ]);
+          }, function(error) {
+            alert(`ERROR: ${error.message}`);
+          }, {
+            enableHighAccuracy: true
+          });
+          const locate = document.getElementById('locator');
+            locate.className = `ol-control ol-unselectable ${styles.locate}`;
+            locate.innerHTML = '<button title="Locate me">◎</button>';
+            locate.addEventListener('click', function() {
+            if (!source.isEmpty()) {
+                olMap.getView().fit(source.getExtent(), {
+                maxZoom: 18,
+                duration: 500
+                });
+            }
+            });
+            olMap.addControl(new Control({
+            element: locate
+            }));
     });
 
     return (
-        <div id="map" className={styles.map}></div>
+        <div id="map" className={styles.map}>
+            <div id="locator" className={`ol-control ol-unselectable ${styles.locate}`}>
+                <button title="Locate me">◎</button>
+            </div>
+        </div>
     );
 }
 
