@@ -19,7 +19,7 @@ import BingMaps from 'ol/source/BingMaps';
 const MapWrapper = ()=>{
     const [center,setCenter] = useState([0,0]);
     const [zoom,setZoom] = useState(1);
-
+    
     const olMap = new Map({
         layers: [
             new TileLayer({
@@ -33,6 +33,7 @@ const MapWrapper = ()=>{
           view: new View({
             center: center,
             zoom: zoom,
+            extent : [8622096.75805907,1441340.8001343308,8658939.390685353,1472267.5601899377]
           }),
     });
 
