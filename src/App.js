@@ -16,7 +16,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/connect/:providerName/redirect" component={LoginRedirect}/>
+        <Route exact path="/connect/:providerName" component={LoginRedirect}/>
         <Route exact path="/" component={Login}/>
         <Route exact path="/Home" component={Application}/>
       </Switch>

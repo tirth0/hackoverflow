@@ -10,10 +10,10 @@ const LoginRedirect = (props) => {
   const history = useHistory();
 
   useEffect(() => {
-    
+      
     // Successfully logged with the provider
     // Now logging with strapi by using the access_token (given by the provider) in props.location.search
-    fetch(`${backendUrl}/auth/${params.providerName}/redirect${location.search}`)
+    fetch(`${backendUrl}/auth/${params.providerName}/callback${location.search}`)
       .then(res => {
         if (res.status !== 200) {
           throw new Error(`Couldn't login to Strapi. Status: ${res.status}`);
@@ -31,6 +31,7 @@ const LoginRedirect = (props) => {
       })
       .catch(err => {
         console.log(err);
+        console.log(location.search);
         setText('An error occurred, please see the developer console.')
       });
   }, [history, location.search, params.providerName]);
