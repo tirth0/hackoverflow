@@ -40,7 +40,7 @@ const Icon = ({provider}) =>{
 
 const SocialLink = ({provider}) => {
     return(
-    <a href={`http://localhost:1337/connect/${provider}`} className={classes.link}>
+    <a href={`https://gentle-peak-83550.herokuapp.com/connect/${provider}`} className={classes.link}>
       <LoginButton type="button" social={provider}>
         <Icon provider={provider}/>
         &nbsp;
