@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
-const backendUrl = `https://gentle-peak-83550.herokuapp.com/`;
+const backendUrl = `https://gentle-peak-83550.herokuapp.com`;
 
 const LoginRedirect = (props) => {
   
