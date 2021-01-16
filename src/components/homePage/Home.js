@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const backendUrl = `http://localhost:1337`;
+const backendUrl = `https://gentle-peak-83550.herokuapp.com/`;
 
 
 
