@@ -36,7 +36,7 @@ const LoginRedirect = (props) => {
       .catch(err => {
         console.log(err);
         console.log(location.search);
-        setText('An error occurred, please see the developer console.')
+        // setText('An error occurred, please see the developer console.')
       });
   }, [history, location.search, params.providerName]);
 

@@ -36,24 +36,24 @@ const post = async (e) => {
    });
 }
 const Form = () => <div><form method="post" onSubmit={post}>
-                <label for='name'><b>Full Name:</b></label>
+                <label htmlFor='name'><b>Full Name:</b></label>
                 <input type="text" id="name" name="name" />
-                <label for='email'><b>Email:</b></label>
+                <label htmlFor='email'><b>Email:</b></label>
                 <input type="email" id="email" />
-                <label for="phone"><b>Phone no:</b></label>
+                <label htmlFor="phone"><b>Phone no:</b></label>
                 <input type="text" id="phone" />
-                <label for="address"><b>Address:</b></label>
+                <label htmlFor="address"><b>Address:</b></label>
                 <input type="text" id="address" placeholder="Street address,P.O.box and Colony name " />
-                <label for="img"><b>Image(less than 250kb):</b></label>
+                <label htmlFor="img"><b>Image(less than 250kb):</b></label>
                 <input type="file" id="img" accept="image/*" />
                 <input type="checkbox" id="manually" />
-                <label for="manually" class="manual">Select latitude and longitude manually</label>
+                <label htmlFor="manually" className="manual">Select latitude and longitude manually</label>
                 <br/>
-                <label for="lat" class="lat"  >latitude: </label>
+                <label htmlFor="lat" className="lat">latitude:</label>
                 <input type="text" id="lat" />
-                <label for="lon" class="lon">longitude:</label>
+                <label htmlFor="lon" className="lon">longitude:</label>
                 <input type="text" id="lon" />
-                <input type="submit" class="final"/>
+                <input type="submit" className="final"/>
               </form>
               </div>;
 
