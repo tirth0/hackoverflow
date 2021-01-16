@@ -17,7 +17,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/connect/:providerName" component={LoginRedirect}/>
+        <Route exact path="/auth/:providerName/callback" component={LoginRedirect}/>
         <Route exact path="/" component={Login}/>
         <Route exact path="/Home" component={Application}/>
         <Route exact path="/Roads" component={Roads}/>

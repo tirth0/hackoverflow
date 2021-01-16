@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation, useParams } from "react-router-dom";
 
+import classes from './LoginRedirect.module.css';
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+
 const backendUrl = `http://localhost:1337`;
 
 const LoginRedirect = (props) => {
-  const [text, setText] = useState('Loading...');
+  
   const location = useLocation();
   const params = useParams();
   const history = useHistory();
@@ -26,7 +31,6 @@ const LoginRedirect = (props) => {
         // Now saving the jwt to use it for future authenticated requests to Strapi
         localStorage.setItem('jwt', res.jwt);
         localStorage.setItem('username', res.user.username);
-        setText('You have been successfully logged in. You will be redirected in a few seconds...');
         setTimeout(() => history.push('/Home'), 2000); // Redirect to homepage after 3 sec
       })
       .catch(err => {
@@ -36,7 +40,11 @@ const LoginRedirect = (props) => {
       });
   }, [history, location.search, params.providerName]);
 
-  return <p>{text}</p>
+  return (
+    <div className={classes.loadContainer}>
+        <CircularProgress/>
+    </div>
+  );
 };
 
 export default LoginRedirect;

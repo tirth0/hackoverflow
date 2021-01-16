@@ -11,8 +11,8 @@ const SideBar = ()=>{
             
         </div>
         <div className={classes.links}>
-            <a href="">Application</a>
-            <a href="">Logout</a>
+            <a href="/Home">Application</a>
+            <a href="/">Logout</a>
         </div>
         <div className={classes.footer}>
             <p>Socials</p>
