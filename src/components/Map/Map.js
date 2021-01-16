@@ -15,6 +15,47 @@ import {circular} from 'ol/geom/Polygon';
 import Point from 'ol/geom/Point';
 import Control from 'ol/control/Control';
 import BingMaps from 'ol/source/BingMaps';
+import { noAuto } from '@fortawesome/fontawesome-svg-core';
+import { PostAdd } from '@material-ui/icons';
+
+
+const post = async (e) => {
+  e.preventDefault();
+   const state={
+    name:e.target.name.value,
+    email:e.target.email.value,
+    phone:e.target.phone.value, 
+    address:e.target.address.value,
+    latitude:e.target.lat.value,
+    longitude:e.target.lon.value,
+  };
+  console.log(state);
+   fetch('https://hackoverflow-backend-api.herokuapp.com/api/places',{
+     method:'POST',
+     body:state
+   });
+}
+const Form = () => <div><form method="post" onSubmit={post}>
+                <label for='name'><b>Full Name:</b></label>
+                <input type="text" id="name" name="name" />
+                <label for='email'><b>Email:</b></label>
+                <input type="email" id="email" />
+                <label for="phone"><b>Phone no:</b></label>
+                <input type="text" id="phone" />
+                <label for="address"><b>Address:</b></label>
+                <input type="text" id="address" placeholder="Street address,P.O.box and Colony name " />
+                <label for="img"><b>Image(less than 250kb):</b></label>
+                <input type="file" id="img" accept="image/*" />
+                <input type="checkbox" id="manually" />
+                <label for="manually" class="manual">Select latitude and longitude manually</label>
+                <br/>
+                <label for="lat" class="lat"  >latitude: </label>
+                <input type="text" id="lat" />
+                <label for="lon" class="lon">longitude:</label>
+                <input type="text" id="lon" />
+                <input type="submit" class="final"/>
+              </form>
+              </div>;
 
 const MapWrapper = ()=>{
     const [center,setCenter] = useState([0,0]);
@@ -78,29 +119,7 @@ const MapWrapper = ()=>{
             <div id="locator" className={`ol-control ol-unselectable ${styles.locate}`}>
                 <button title="Locate me">◎</button>
             </div>
-            <div>
-              <form method="post">
-                <label for='name'><b>Full Name:</b></label>
-                <input type="text" id="name"/>
-                <label for='email'><b>Email:</b></label>
-                <input type="email" id="email"/>
-                <label for="phone no"><b>Phone no:</b></label>
-                <input type="text" id="phone no"/>
-                <label for="address"><b>Address:</b></label>
-                <input type="text" id="adress" placeholder="Street address,P.O.box and Colony name "/>
-                <label for="img"><b>Image(less than 250kb):</b></label>
-                <input type="file" id="img" accept="image/*" />
-                <input type="checkbox" id="manually"/>
-                <label for="manually" class="manual">Select latitude and longitude manually</label>
-                <br/>
-                <label for="lat" class="lat" >latitude: </label>
-                <input type="text" id="lat" />
-                <label for="lon" class="lon">longitude:</label>
-                <input type="text" id="lon" />
-                <input type="submit" class="final"/>
-              </form>
-            </div>
-            
+              <Form />
         </div>
     );
 }
